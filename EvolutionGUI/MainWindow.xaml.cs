@@ -32,19 +32,20 @@ namespace EvolutionGUI
             canvas.Background = new SolidColorBrush(Colors.Red);
             
             var Joint1 = new Joint(new Point(200, 200));
-            /*var Joint2 = new Joint(new Point(200, 400));
+            var Joint2 = new Joint(new Point(200, 400));
             var Muscle1 = new Muscle(new Tuple<Joint, Joint>(Joint1, Joint2));
             var creature = new Creature(new[] { Joint1, Joint2 }, new[] { Muscle1 });
 
             foreach(var joint in creature.Joints)
             {
                 var orb = new Ellipse();
+                orb.Fill = new SolidColorBrush(Colors.Black);
                 orb.Height = joint.Diameter;
                 orb.Width = joint.Diameter;
 
                 Canvas.SetTop(orb, joint.Position.Y);
                 Canvas.SetLeft(orb, joint.Position.X);
-            }*/
+            }
         }
     }
 }
