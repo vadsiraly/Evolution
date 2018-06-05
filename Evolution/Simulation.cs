@@ -14,7 +14,7 @@ namespace Evolution
 
         }
 
-        private void Simulate(Creature creature)
+        public void Simulate(Creature creature)
         {
             foreach(var muscle in creature.Muscles)
             {

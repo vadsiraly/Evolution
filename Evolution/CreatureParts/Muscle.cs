@@ -57,7 +57,7 @@ namespace Evolution.CreatureParts
 
         public void ApplyForce()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

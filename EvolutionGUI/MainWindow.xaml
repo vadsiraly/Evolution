@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EvolutionGUI"
         mc:Ignorable="d"
-        Title="Evolution" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
+        Title="Evolution" SizeToContent="WidthAndHeight">
     <StackPanel>
-        <Canvas Name="canvas" Width="800" Height="600">
+        <Canvas Name="canvas">
         </Canvas>
     </StackPanel>
 </Window>

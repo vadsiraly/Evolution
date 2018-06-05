@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Evolution
 {
@@ -12,6 +15,31 @@ namespace Evolution
         {
             var limitedRandom = ((float)random.NextDouble()) * (maximum - minimum) + minimum;
             return limitedRandom;
+        }
+
+        public static Point ToCanvas(this Point point, Canvas canvas)
+        {
+            double x = ((point.X * canvas.ActualWidth) / 360.0) - 180.0;
+            double y = ((point.Y * canvas.ActualHeight) / 180.0) - 90.0;
+            return new Point(x, y);
+        }
+
+        public static Canvas SetCoordinateSystem(this Canvas canvas, Double xMin, Double xMax, Double yMin, Double yMax)
+        {
+            var width = xMax - xMin;
+            var height = yMax - yMin;
+
+            var translateX = -xMin;
+            var translateY = height + yMin;
+
+            var group = new TransformGroup();
+
+            group.Children.Add(new TranslateTransform(translateX, -translateY));
+            group.Children.Add(new ScaleTransform(canvas.ActualWidth / width, canvas.ActualHeight / -height));
+
+            canvas.RenderTransform = group;
+
+            return canvas;
         }
     }
 }

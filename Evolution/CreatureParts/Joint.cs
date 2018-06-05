@@ -42,19 +42,19 @@ namespace Evolution.CreatureParts
 
         public void ApplyForce()
         {
-            Direction = new Vector(Direction.X * Constants.AirFriction, ( Direction.Y * Constants.AirFriction ) + Constants.Gravity);
+            Direction = new Vector(Direction.X * Constants.AirFriction, ( Direction.Y * Constants.AirFriction ) - Constants.Gravity);
             Position = new Point(Position.X + Direction.X, Position.Y + Direction.Y);
 
-            var heightFromGround = Position.Y + Diameter / 2;
+            var heightFromGround = (Position.Y + Diameter / 2);
 
-            if (heightFromGround >= 0)
+            if (heightFromGround <= Constants.GroundOffset)
             {
-                Position = new Point (Direction.X * Friction,-Diameter / 2);
+                Position = new Point (Position.X + (Direction.X * Friction), (-Diameter / 2) + Constants.GroundOffset);
                 Direction = new Vector(Direction.X, 0);
 
                 if(Direction.X > 0)
                 {
-                    Direction = new Vector(Direction.X - (Friction * heightFromGround * Constants.Friction), Direction.Y);
+                    Direction = new Vector(Direction.X - (Friction * (Constants.GroundOffset - heightFromGround) * Constants.Friction), Direction.Y);
                     if(Direction.X < 0)
                     {
                         Direction = new Vector(0, Direction.Y);
@@ -62,7 +62,7 @@ namespace Evolution.CreatureParts
                 }
                 else
                 {
-                    Direction = new Vector(Direction.X + (Friction * heightFromGround * Constants.Friction), Direction.Y);
+                    Direction = new Vector(Direction.X + (Friction * (Constants.GroundOffset - heightFromGround) * Constants.Friction), Direction.Y);
                     if (Direction.X > 0)
                     {
                         Direction = new Vector(0, Direction.Y);

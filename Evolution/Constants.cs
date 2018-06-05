@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Evolution
 {
@@ -14,17 +15,21 @@ namespace Evolution
             {
                 return ++_ID;
             }
-        } 
+        }
 
+        public static Point WindowSize = new Point(800, 800);
+
+        public static float GroundHeight = 0.3f;
+        public static float GroundOffset = - (float)WindowSize.Y * (0.5f - GroundHeight);
         public static float AirFriction = 0.95f;
         public static float Mutability = 1f;
-        public static float Gravity = 0.005f;
-        public static float Friction = 4f;
+        public static float Gravity = 0.5f;
+        public static float Friction = 0.4f;
 
         public static float MinimumJointFriction = 0f;
         public static float MaximumJointFriction = 1f;
-        public static float MinimumJointSize = 0.4f;
-        public static float MaximumJointSize = 0.4f;
+        public static float MinimumJointSize = 40f;
+        public static float MaximumJointSize = 40f;
 
         public static float MinimumMuscleRigidity = 0.02f;
         public static float MaximumMuscleRigidity = 0.08f;
