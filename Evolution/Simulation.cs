@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Evolution.CreatureParts;
+using Evolution.Timing;
 
 namespace Evolution
 {
@@ -14,11 +15,11 @@ namespace Evolution
 
         }
 
-        public void Simulate(Creature creature)
+        public void Simulate(Creature creature, Time time)
         {
             foreach(var muscle in creature.Muscles)
             {
-                muscle.ApplyForce();
+                muscle.ApplyForce(time, creature.CreatureTimer);
             }
 
             foreach (var joint in creature.Joints)

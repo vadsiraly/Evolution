@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Evolution.Timing;
 
 namespace Evolution.CreatureParts
 {
@@ -55,9 +57,29 @@ namespace Evolution.CreatureParts
             Rigidity = random.NextFloat(Constants.MinimumMuscleRigidity, Constants.MaximumMuscleRigidity);
         }
 
-        public void ApplyForce()
+        public void ApplyForce(Time time, float creatureTimer)
         {
-            //throw new NotImplementedException();
+            float distance = Joints.Item1.Position.DistanceFrom(Joints.Item2.Position);
+            float angle = Joints.Item1.Position.Angle(Joints.Item2.Position);
+
+            var target = Contracted ? ContractLength : ExtendLength;
+
+            float force = (float)Math.Min(Math.Max(1 - (distance / target), -0.4), 0.4) * Constants.ForceMultiplier;
+
+            Joints.Item1.Direction = new Vector(Joints.Item1.Direction.X + (Math.Cos(angle) * force * Rigidity / Joints.Item1.Diameter), Joints.Item1.Direction.Y + ((float)Math.Sin(angle) * force * Rigidity / Joints.Item1.Diameter));
+            Joints.Item2.Direction = new Vector(Joints.Item2.Direction.X - (Math.Cos(angle) * force * Rigidity / Joints.Item2.Diameter), Joints.Item2.Direction.Y - ((float)Math.Sin(angle) * force * Rigidity / Joints.Item2.Diameter));
+
+            ThruPeriod = (time.ElapsedMilliseconds / creatureTimer) / Period;
+            if ((ThruPeriod <= ExtendTime && ExtendTime <= ContractTime) ||
+               (ContractTime <= ThruPeriod && ThruPeriod <= ExtendTime) ||
+               (ExtendTime <= ContractTime && ContractTime <= ThruPeriod))
+            {
+                Contracted = true;
+            }
+            else
+            {
+                Contracted = false;
+            }
         }
     }
 }

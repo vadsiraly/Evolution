@@ -17,7 +17,7 @@ namespace Evolution
             }
         }
 
-        public static Point WindowSize = new Point(800, 800);
+        public static Point WindowSize = new Point(1600, 800);
 
         public static float GroundHeight = 0.3f;
         public static float GroundOffset = - (float)WindowSize.Y * (0.5f - GroundHeight);
@@ -25,14 +25,15 @@ namespace Evolution
         public static float Mutability = 1f;
         public static float Gravity = 0.5f;
         public static float Friction = 0.4f;
+        public static float ForceMultiplier = 50f;
 
         public static float MinimumJointFriction = 0f;
         public static float MaximumJointFriction = 1f;
         public static float MinimumJointSize = 40f;
         public static float MaximumJointSize = 40f;
 
-        public static float MinimumMuscleRigidity = 0.02f;
-        public static float MaximumMuscleRigidity = 0.08f;
+        public static float MinimumMuscleRigidity = 2f;
+        public static float MaximumMuscleRigidity = 8f;
 
         public static int MinimumMusclePeriod = 1;
         public static int MaximumMusclePeriod = 3;
@@ -43,8 +44,8 @@ namespace Evolution
         public static float MinimumMuscleExtensionTime = 0f;
         public static float MaximumMuscleExtensionTime = 1f;
 
-        public static float MinimumMuscleLength = 0.5f;
-        public static float MaximumMuscleLength = 1.5f;
+        public static float MinimumMuscleLength = 150f;
+        public static float MaximumMuscleLength = 700f;
 
         public static float MinimumHeartbeat = 40f;
         public static float MaximumHeartbeat = 80f;

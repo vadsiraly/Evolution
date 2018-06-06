@@ -41,5 +41,25 @@ namespace Evolution
 
             return canvas;
         }
+
+        public static float DistanceFrom(this Vector thisVector, Vector other)
+        {
+            return (float)Math.Sqrt(Math.Pow((other.X - thisVector.X),2) + Math.Pow((other.Y - thisVector.Y), 2));
+        }
+
+        public static float DistanceFrom(this Point thisVector, Point other)
+        {
+            return (float)Math.Sqrt(Math.Pow((other.X - thisVector.X), 2) + Math.Pow((other.Y - thisVector.Y), 2));
+        }
+
+        public static float Angle(this Vector thisVector, Vector other)
+        {
+            return (float)Math.Atan2(thisVector.Y-other.Y, thisVector.X - other.X);
+        }
+
+        public static float Angle(this Point thisVector, Point other)
+        {
+            return (float)Math.Atan2(thisVector.Y - other.Y, thisVector.X - other.X);
+        }
     }
 }
